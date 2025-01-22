@@ -16,7 +16,7 @@ import DetailEdu from "@/components/DetailEdu.vue"
 import DetailExp from "@/components/DetailExp.vue"
 import DetailCompany from "@/components/DetailCompany.vue"
 import profession from "@/views/profession.vue";
-import trend from "@/views/trend.vue";
+import trend from "@/views/trend/trend.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -54,9 +54,6 @@ const router = createRouter({
     {
       path: '/home',
       component: Home,
-      // 如果 /home 有子路由，并且你希望在访问 /home 时默认显示某个子路由，
-      // 你可以在这里添加 redirect 属性，或者确保某个子路由的 path 是 ''（空字符串）
-      // 但在这个例子中，我们保持简单，不添加 redirect
     },
     {
       path: '/about1',

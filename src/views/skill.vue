@@ -144,13 +144,16 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column; /* 列布局 */
   align-items: center; /* 水平居中 */
-  background-color: #f9f9f9; /* 背景色 */
+  background-color: transparent; /* 背景色 */
   padding: 20px; /* 内边距 */
 }
 
 .chart-container {
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
   width: 90%; /* 设置容器宽度 */
   height: 750px; /* 图表容器高度 */
   background: white; /* 图表背景色 */
@@ -158,6 +161,7 @@ onBeforeUnmount(() => {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 阴影效果 */
   margin: 20px 0; /* 与其他元素的间距 */
 }
+
 
 .section-title {
   font-size: 24px; /* 标题字体大小 */

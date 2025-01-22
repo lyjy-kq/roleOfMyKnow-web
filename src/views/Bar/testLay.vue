@@ -14,9 +14,6 @@
         </div>
       </div>
     </header>
-    <!-- <footer class="footer"> -->
-    <!--   <p>© 2023 数据分析团队 | 作者: Your Name</p> -->
-    <!-- </footer> -->
   </div>
 </template>
 
@@ -33,7 +30,7 @@ export default {
         {title: '能力趋势', description: '近期能力变化。', color: '#BDB76B'},
         {title: '智能匹配', description: '给出你的技能与经理,我们将给你推荐些岗位。', color: '#ff5722'},
       ],
-      activeIndex: null // 初始没有激活的板块
+      activeIndex: 0 // 初始没有激活的板块
     };
   },
   methods: {
@@ -82,10 +79,14 @@ export default {
   flex-direction: column; /* 竖直排列 */
   position: relative; /* 相对定位以支持绝对定位的子元素 */
   font-size: 1em;
-  width: 240px; /* 设置导航栏的宽度 */
+  width: 200px; /* 设置导航栏的宽度 */
 }
 
 .nav-item {
+  display: flex;
+  flex-direction: column; /* 使标题和描述垂直排列 */
+  justify-content: center; /* 垂直居中 */
+  align-items: center; /* 水平居中 */
   width: 100%; /* 设置卡片的固定宽度 */
   padding: 20px;
   margin: -5px 0; /* 上下间距 */
@@ -95,13 +96,15 @@ export default {
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
   position: relative; /* 使其能在相对父元素中移动 */
-  height: 120px; /* 动态高度 */
+  height: 71px; /* 动态高度 */
 
 }
+
 
 .nav-item.active {
   transform: scale(1.1); /* 增大当前活动板块 */
   z-index: 1; /* 确保活动卡片在上方 */
+  height: 100px;
 }
 
 .active-title {
@@ -117,5 +120,15 @@ export default {
   margin-top: 20px;
   padding: 10px;
   background-color: #f0f0f0;
+}
+
+.active-title {
+  font-size: 1.5em;
+  margin: 5px; /* 移除上下间距 */
+}
+
+.nav-item p {
+  text-align: center;
+  margin: 5px 0; /* 将上下的 margin 设置为更小的值 */
 }
 </style>

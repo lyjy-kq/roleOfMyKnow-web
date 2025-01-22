@@ -5,7 +5,6 @@
         <Promotion style="width: 1.5em; height: 1.5em; margin-right: 8px"></Promotion>
         <span>更新数据</span>
       </div>
-      <!--      <button @click="getAvg" class="toggle-button" >  &#x1F504; 更新数据</button>-->
       <div ref="charts" class="echarts-container"  ></div>
     </div>
     <div class="summary">
@@ -63,19 +62,6 @@ const realDataWithFullNames = ref({});
 Object.keys(provinceToRouteMap).forEach((province) => {
   routeToProvinceMap[provinceToRouteMap[province]] = province;
 });
-// const currentUrl = window.location.href; // 获取完整的URL
-// const currentPath = window.location.pathname; // 获取路径部分
-// const currentQuery = window.location.search; // 获取查询参数
-// const currentHash = window.location.hash; // 获取哈希部分
-
-
-// console.log('当前URL:', currentUrl);
-// console.log('当前路径:', currentPath);
-// console.log('查询参数:', currentQuery);
-// console.log('哈希部分:', currentHash);
-// function getAvg1(){
-//   const currentPath = window.location.pathname; // 获取路径部分
-// }
 watch(
     () => route.path,
     (newPath, oldPath) => {
@@ -104,8 +90,7 @@ async function getAvg() {
   const realData = data;
   console.log(realData);
   console.log(realData[2].result)
-// 创建一个新对象来存储省份全称和对应数据
-// 遍历 realData 对象
+
   Object.keys(realData).forEach((route) => {
     // 使用 provinceToRouteMap 对象将省份简称转换为全称
     const province = routeToProvinceMap[route];
@@ -191,62 +176,6 @@ function initializeChart() {
 onMounted(() => {
   // 首先注册地图
   getAvg();
-  // console.log(realDataWithFullNames.value["山东省"])
-  // echarts.registerMap('china', china);
-  //
-  // const provinceAvgValue=null;
-  // // 然后初始化图表
-  //
-  // const chart = echarts.init(charts.value);
-  // chart.on('click', function (params) {
-  //   if (params.componentType === 'series' && params.seriesType === 'map') {
-  //     const routeName = provinceToRouteMap[params.name];
-  //     if (routeName) {
-  //       router.push(`/china/${routeName}`);
-  //     } else {
-  //       console.error('No route found for province:', params.name);
-  //     }
-  //   }
-  // });
-  // const option = {
-  //   title: {
-  //     text: '中国省份地图',
-  //     left: 'center'
-  //   },
-  //   tooltip: {
-  //     trigger: 'item'
-  //   },
-  //   visualMap: {
-  //     min: 0,
-  //     max: 200,
-  //     left: 'left',
-  //     top: 'bottom',
-  //     text: ['高', '低'],
-  //     inRange: {
-  //       color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
-  //     }
-  //   },
-  //   backgroundColor: '#f4f4f4', // 设置图表背景色
-  //   series: [
-  //     {
-  //       name: '中国省份',
-  //       type: 'map',
-  //       map: 'china',
-  //       roam: true,
-  //       data: china.features.map((province) => ({
-  //         name: province.properties.name,
-  //         value: realDataWithFullNames.value[province.properties.name.toString()]
-  //       })),
-  //       emphasis: {
-  //         label: {
-  //           show: true
-  //         }
-  //       },
-  //
-  //     }
-  //   ]
-  // };
-  // chart.setOption(option);
 });
 </script>
 
@@ -263,6 +192,7 @@ onMounted(() => {
 .chart-container {
   position: relative;
   overflow: hidden;
+  align-items: center; /* 水平居中 */
   width: 90%; /* 设置容器宽度 */
   height: 750px; /* 图表容器高度 */
   background: white; /* 图表背景色 */

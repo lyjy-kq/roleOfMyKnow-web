@@ -15,7 +15,7 @@ function updateRole() {
 </script>
 
 <template>
-  <div id="app">
+  <div id="app" >
     <!-- HeaderComponent 监听角色变化 -->
     <HeaderComponent v-if="route.name !== 'login'" @role-changed="updateRole" />
     <br>
@@ -28,7 +28,7 @@ function updateRole() {
     </div>
     <FooterComponent v-if="route.name !== 'login'" />
   </div>
-</template>
+</template >
 
 <style scoped>
 #app {
@@ -44,6 +44,5 @@ function updateRole() {
 
 .content {
   flex: 1; /* 右侧内容区域占据剩余空间 */
-  padding: 20px; /* 内边距 */
 }
 </style>

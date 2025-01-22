@@ -110,7 +110,7 @@ function initBarChart(chartDom, xAxisData, yAxisData, title, routePath) {
 
   // 初始化新的图表实例
   chartDom.style.width = '100%';
-  chartDom.style.height = chartContainerHeight.value + 'px'; // 设置动态高度
+  chartDom.style.height = '80%'; // 设置动态高度
   myChart.value = echarts.init(chartDom);
 
   const option = {
@@ -176,7 +176,6 @@ function switchC() {
 
 <template>
   <div class="about">
-    <!-- 切换按钮 -->
     <div class="chart-container">
       <el-icon></el-icon>
       <div @click="switchC" class="toggle-button" style="display: flex; align-items: center;">
@@ -187,11 +186,6 @@ function switchC() {
 
       <div id="chart-container" class="echarts-container"></div>
     </div>
-
-    <!-- 图表容器 (同一个位置) -->
-
-
-    <!-- 错误信息展示 -->
     <p v-if="errorMsg">{{ errorMsg }}</p>
   </div>
 </template>
@@ -200,22 +194,27 @@ function switchC() {
 .about {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f9f9f9;
-  padding: 20px;
+  flex-direction: column; /* 列布局 */
+  align-items: center; /* 水平居中 */
+  background-color: transparent; /* 背景色 */
+  padding: 20px; /* 内边距 */
 }
 
 .chart-container {
   position: relative;
   overflow: hidden;
-  width: 90%;
-  height: 750px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin: 20px 0;
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  width: 90%; /* 设置容器宽度 */
+  height: 750px; /* 图表容器高度 */
+  background: white; /* 图表背景色 */
+  border-radius: 8px; /* 圆角 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+  margin: 20px 0; /* 与其他元素的间距 */
 }
+
+
 
 .toggle-button {
   position: absolute;

@@ -2,11 +2,10 @@
   <header class="app-header">
     <img src="@/assets/icon.png" alt="Logo" class="logo" />
     <div class="welcome-message">
-
       <h1>欢迎来到"你职我知"！</h1>
       <!-- 添加下拉选择框 -->
-      <select @change="reloadPage" class="role-select">
-        <option disabled selected>选择职业</option>
+      <select @change="reloadPage" class="role-select" v-model="selectedRole">
+        <option disabled selected style="color: azure ">选择职业</option>
         <option value="需求工程师">需求工程师</option>
         <option value="软件工程师">软件工程师</option>
         <option value="软件架构师">软件架构师</option>
@@ -19,43 +18,37 @@
   </header>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      poems: [
-        '月落乌啼霜满天，江枫渔火对愁眠。',
-        '无边落木萧萧下，不尽长江滚滚来。',
-        '床前明月光，疑是地上霜。',
-        // 添加更多诗句
-      ]
-    };
-  },
-  computed: {
-    randomPoem() {
-      return this.poems[Math.floor(Math.random() * this.poems.length)];
-    }
-  },
-  methods: {
-    reloadPage() {
-
-
-    }
-  }
-};
-</script>
 <script setup>
-import { ref, defineEmits } from 'vue';
+import { ref, computed, defineEmits } from 'vue';
+import { useStore } from '@/stores';
 
+// 获取 Pinia store
+const store = useStore();
 const emit = defineEmits(['role-changed']);
-const selectedRole = ref(''); // 绑定到选择框的模型
+
+// 绑定选择框的模型
+const selectedRole = ref(store.selectedRole);
+
+// 设置诗句
+const poems = [
+  '月落乌啼霜满天，江枫渔火对愁眠。',
+  '无边落木萧萧下，不尽长江滚滚来。',
+  '床前明月光，疑是地上霜。',
+];
+
+// 计算随机诗句
+const randomPoem = computed(() => {
+  return poems[Math.floor(Math.random() * poems.length)];
+});
 
 // 当选择框的选项发生改变时调用这个函数
 function reloadPage(event) {
   selectedRole.value = event.target.value; // 更新选中的角色
+  store.setSelectedRole(selectedRole.value); // 更新 Pinia store 的状态
   emit('role-changed', selectedRole.value); // 发射事件
 }
 </script>
+
 
 <style scoped>
 .app-header {

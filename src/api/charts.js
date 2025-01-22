@@ -25,7 +25,7 @@ export const getNatureService=()=>{
 };
 export const getEducationService = (postData) => {
     return request.post('/all', postData).then(response => {
-        return response.data; // 返回 response.data
+        return response.data;
     })
 
 };
@@ -46,8 +46,12 @@ export const getResponseService=()=>{
     return  request.get('/all/response');
 };
 
-
-
+//---------能力趋势图表
+export const getAbilityService=(postData)=>{
+    return  request.post('/trend/ability',postData).then(response => {
+        return response.data; // 返回 response.data
+    })
+};
 
 
 
